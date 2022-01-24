@@ -21,14 +21,17 @@ public class ServiceLoggerAspect {
     private static final Logger logger = LoggerFactory.getLogger(ServiceLoggerAspect.class);
 
     @Pointcut("execution(* com.students.community.service.*.*(..))")
-    public void pointcut(){
+    public void pointcut() {
 
     }
 
     @Before("pointcut()")
-    public void before(JoinPoint joinPoint){
+    public void before(JoinPoint joinPoint) {
         // 用户{1.2.3.4}， 在xxx时间，访问了xxx功能
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes == null) {
+            return;
+        }
         HttpServletRequest request = attributes.getRequest();
         String ip = request.getRemoteHost();
         String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());

@@ -1,8 +1,10 @@
 package com.students.community.controller;
 
 import com.students.community.annotation.LoginRequired;
+import com.students.community.entity.Event;
 import com.students.community.entity.Page;
 import com.students.community.entity.User;
+import com.students.community.event.EventProducer;
 import com.students.community.service.FollowService;
 import com.students.community.service.UserService;
 import com.students.community.util.CommunityConstant;
@@ -31,6 +33,9 @@ public class FollowController implements CommunityConstant{
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private EventProducer eventProducer;
+
     @LoginRequired
     @RequestMapping(path = "/follow", method = RequestMethod.POST)
     @ResponseBody
@@ -38,6 +43,15 @@ public class FollowController implements CommunityConstant{
         User user = hostHolder.getUser();
 
         followService.follow(user.getId(), entityType, entityId);
+
+        // 触发关注事件
+        Event event = new Event()
+                .setTopic(TOPIC_FOLLOW)
+                .setUserId(hostHolder.getUser().getId())
+                .setEntityType(entityType)
+                .setEntityId(entityId)
+                .setEntityUserId(entityId);
+        eventProducer.fireEvent(event);
 
         return CommunityUtil.getJsonString(0, "已关注！");
     }
