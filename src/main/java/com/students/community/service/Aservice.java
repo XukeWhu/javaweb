@@ -6,8 +6,12 @@ import com.students.community.dao.UserMapper;
 import com.students.community.entity.DiscussPost;
 import com.students.community.entity.User;
 import com.students.community.util.CommunityUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -24,6 +28,9 @@ import java.util.Date;
 @Service
 //@Scope("prototype")
 public class Aservice {
+
+    private static final Logger logger = LoggerFactory.getLogger(Aservice.class);
+
     @Autowired
     private Adao adao;
 
@@ -110,6 +117,18 @@ public class Aservice {
                 return "ok";
             }
         });
+    }
+
+    // 让该方法可以在多线程环境下被异步调用
+    @Async
+    public void execute1(){
+        logger.debug("execute1!");
+    }
+
+    //直接触发定时线程池
+    //@Scheduled(initialDelay = 10000,fixedDelay = 1000)
+    public void execute2(){
+        logger.debug("execute2!");
     }
 
 }
