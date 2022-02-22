@@ -1,5 +1,7 @@
 本项目是基于Spring开发的讨论社区，使用IDEA进行开发，Maven进行管理。
+
 项目中使用了Spring Boot，SSM，Redis，Kafka，Elasticsearch，Caffeine以及Spring Security。
+
 项目中的src存放项目源码，其中包括存放主文件的main文件夹以及存放测试文件的test文件夹，main中各个文件夹的功能如下：
 actuator：自定义Endpoint，用于监控应用服务的运行状况。
 annotation：自定义注解；
