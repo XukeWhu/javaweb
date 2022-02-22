@@ -2,6 +2,8 @@
 
 项目中使用了Spring Boot，SSM，Redis，Kafka，Elasticsearch，Caffeine以及Spring Security。
 
+
+
 项目中的src存放项目源码，其中包括存放主文件的main文件夹以及存放测试文件的test文件夹，main中各个文件夹的功能如下：
 
 actuator：自定义Endpoint，用于监控应用服务的运行状况。
@@ -25,6 +27,8 @@ quartz：定义定时任务，根据点赞量，关注量等信息修改帖子�
 service：业务层，基于数据访问层dao实现业务功能，包括具体的登录，注册，点赞等功能。
 
 util：实现辅助功能，包括发送邮件，生成UUID，实现敏感词过滤。
+
+
 
 项目中的resources文件夹中存放各种项目所需的资源：
 
