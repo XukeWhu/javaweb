@@ -1,8 +1,4 @@
-本项目是基于Spring开发的讨论社区，使用IDEA进行开发，Maven进行管理。
-
-项目中使用了Spring Boot，SSM，Redis，Kafka，Elasticsearch，Caffeine以及Spring Security。
-
-
+这个项目的整体结构来源于牛客网，使用IDEA进行开发，Maven进行管理，主要使用了Springboot、Mybatis、MySQL、Redis、Kafka、Elasticsearch、Caffeine等工具。主要实现了用户的注册、登录、发帖、点赞、系统通知、按热度排序、搜索等功能。另外引入了redis数据库来提升网站的整体性能，实现了用户凭证的存取、点赞关注的功能。基于 Kafka 实现了系统通知：当用户获得点赞、评论后得到通知。利用定时任务定期计算帖子的分数，并在页面上展现热帖排行榜。此外，基于Spring Security实现了权限控制的功能，增加了管理员和版主，管理员可以删除帖子，版主可以加精帖子。
 
 项目中的src存放项目源码，其中包括存放主文件的main文件夹以及存放测试文件的test文件夹，main中各个文件夹的功能如下：
 
@@ -37,6 +33,8 @@ mapper：存放Mybatis的映射文件。
 static：存放各种项目所需的静态资源，包括图片，js，css，html。
 
 templates：存放各种项目所需的thymeleaf模板文件。
+
+本项目中application.properties配置中的数据库的账号密码以及邮箱的账号密码并未配置，需要自行配置
 
 
 
